@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ihsan Ade Yoga | Mechanical & Maintenance Engineer Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        industrial: {
+                            950: '#090d16',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                            accent: '#f59e0b', // Safety Amber / Industrial Gold
+                            accentHover: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pola Blueprint Teknis Halus untuk Latar Belakang */
+        .blueprint-grid {
+            background-size: 36px 36px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+        /* Animasi garis indikator */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .status-dot {
+            animation: pulseGlow 2s infinite;
+        }
+        /* Print styling agar rapi saat di-export PDF */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; color: black !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Top Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 text-white no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand / Logo -->
+                <a href="#" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-lg shadow-lg shadow-amber-500/20 group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold tracking-tight text-white block leading-none">IHSAN ADE YOGA</span>
+                        <span class="text-[10px] font-mono text-amber-400 tracking-widest uppercase">Mechanical & K3</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-7 text-sm font-medium text-slate-300">
+                    <a href="#tentang" class="hover:text-amber-400 transition-colors">Ringkasan</a>
+                    <a href="#pengalaman" class="hover:text-amber-400 transition-colors">Pengalaman</a>
+                    <a href="#keahlian" class="hover:text-amber-400 transition-colors">Keahlian</a>
+                    <a href="#sertifikasi" class="hover:text-amber-400 transition-colors">Sertifikasi & K3</a>
+                    <a href="#pendidikan" class="hover:text-amber-400 transition-colors">Pendidikan</a>
+                    <a href="#kontak" class="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold transition-all shadow-md">
+                        Hubungi Saya
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-4 space-y-2 text-sm">
+            <a href="#tentang" class="block py-2 px-3 rounded-lg hover:bg-slate-800 text-slate-200">Ringkasan</a>
+            <a href="#pengalaman" class="block py-2 px-3 rounded-lg hover:bg-slate-800 text-slate-200">Pengalaman Kerja</a>
+            <a href="#keahlian" class="block py-2 px-3 rounded-lg hover:bg-slate-800 text-slate-200">Keahlian Teknis</a>
+            <a href="#sertifikasi" class="block py-2 px-3 rounded-lg hover:bg-slate-800 text-slate-200">Sertifikasi & K3</a>
+            <a href="#pendidikan" class="block py-2 px-3 rounded-lg hover:bg-slate-800 text-slate-200">Pendidikan & Organisasi</a>
+            <a href="#kontak" class="block py-2.5 px-3 rounded-lg bg-amber-500 text-slate-950 font-semibold text-center mt-2">Hubungi Saya</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Mengadaptasi Tema SlideEgg Engineering Grayscale + Blueprint) -->
+    <header id="tentang" class="relative bg-slate-950 text-white overflow-hidden">
+        <!-- Background Image Monokrom Nuansa Engineering & Konstruksi (Sesuai Referensi File 2) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80" 
+                 alt="Engineering Blueprint Background" 
+                 class="w-full h-full object-cover object-center grayscale opacity-25 scale-105"
+                 onerror="this.style.display='none'">
+            <!-- Overlay Gradasi Gelap & Grid Teknis -->
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-900/80 blueprint-grid"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                
+                <!-- Kolom Kiri: Profil Utama & Ringkasan -->
+                <div class="lg:col-span-8 space-y-6">
+                    <!-- Badge Status & Tagline Engineering -->
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs font-mono text-amber-400">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 status-dot"></span>
+                        <span>SIAP BEKERJA &bull; AHLI K3 UMUM (BNSP)</span>
+                    </div>
+
+                    <div>
+                        <p class="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-slate-400 mb-2">
+                            "Engineering solves problems, builds innovations, and shapes the modern world."
+                        </p>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                            IHSAN ADE YOGA
+                        </h1>
+                        <p class="mt-3 text-lg sm:text-xl font-medium text-amber-400 flex flex-wrap items-center gap-2">
+                            <span>Mechanical Engineer</span>
+                            <span class="text-slate-600">|</span>
+                            <span>Maintenance Staff</span>
+                            <span class="text-slate-600">|</span>
+                            <span>Technician</span>
+                        </p>
+                    </div>
+
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Lulusan <strong class="text-white">D-3 Teknik Mesin (IPK 3.39/4.00)</strong> dengan pengalaman langsung menangani perawatan mesin industri manufaktur dan perkapalan. Terbukti mampu <strong class="text-amber-400">mengurangi downtime produksi hingga 30%</strong> dan mempercepat durasi perbaikan <strong class="text-amber-400">20% lebih cepat</strong> melalui preventive & corrective maintenance serta penerapan standar K3 yang ketat.
+                    </p>
+
+                    <!-- Info Cepat Lokasi & Kontak -->
+                    <div class="flex flex-wrap gap-4 text-sm text-slate-300 pt-1">
+                        <span class="inline-flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                            <i class="fa-solid fa-location-dot text-amber-400"></i> Singajaya, Indramayu, Jawa Barat
+                        </span>
+                        <a href="https://linkedin.com/in/ihsan-ade-yoga" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-800 transition-colors">
+                            <i class="fa-brands fa-linkedin text-sky-400"></i> linkedin.com/in/ihsan-ade-yoga
+                        </a>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-3 pt-2 no-print">
+                        <a href="#kontak" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm sm:text-base transition-all shadow-lg shadow-amber-500/20 inline-flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Hubungi untuk Rekrutmen
+                        </a>
+                        <button onclick="window.print()" class="px-5 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-white font-medium text-sm sm:text-base border border-slate-700 transition-all inline-flex items-center gap-2">
+                            <i class="fa-solid fa-file-pdf text-amber-400"></i> Simpan / Cetak PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Kartu Foto Profil Profesional + Interaktif Upload -->
+                <div class="lg:col-span-4 flex flex-col items-center">
+                    <div class="relative w-full max-w-[300px] bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 shadow-2xl backdrop-blur-sm">
+                        <!-- Aksen Sudut Teknis -->
+                        <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-3 pb-2 border-b border-slate-800">
+                            <span>ID: MECH-2026</span>
+                            <span class="text-amber-400">IPK 3.39 / 4.00</span>
+                        </div>
+
+                        <!-- Bingkai Foto Profil -->
+                        <div class="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-gradient-to-b from-red-600 to-red-700 border-2 border-slate-700 group">
+                            <img id="profile-photo-preview" 
+                                 src="https://placehold.co/450x600/dc2626/ffffff?text=Foto+Profil+Ihsan%0A(Klik+Tombol+Pasang+Foto)" 
+                                 alt="Foto Profil Ihsan Ade Yoga" 
+                                 class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                            
+                            <!-- Overlay Tombol Ganti/Pasang Foto -->
+                            <label for="photo-upload-input" class="no-print cursor-pointer absolute inset-x-0 bottom-0 bg-slate-950/85 hover:bg-amber-500 text-white hover:text-slate-950 py-2.5 px-3 text-xs font-semibold flex items-center justify-center gap-2 transition-colors border-t border-slate-700">
+                                <i class="fa-solid fa-camera"></i>
+                                <span id="upload-btn-label">Pasang Pas Foto Anda</span>
+                            </label>
+                            <input type="file" id="photo-upload-input" accept="image/*" class="hidden">
+                        </div>
+
+                        <!-- Footer Kartu Foto -->
+                        <div class="mt-3 text-center">
+                            <p class="font-bold text-white text-sm">Ihsan Ade Yoga, A.Md.T.</p>
+                            <p class="text-xs text-slate-400">Politeknik Negeri Indramayu</p>
+                        </div>
+                    </div>
+                    <p class="no-print text-[11px] text-slate-400 mt-2 text-center max-w-[280px]">
+                        *Klik tombol <strong>Pasang Pas Foto Anda</strong> di atas untuk memuat foto berjas formal Anda dari perangkat.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- KEY PERFORMANCE METRICS (KPI HIGHLIGHTS) -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-14 pt-10 border-t border-slate-800/80">
+                <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 backdrop-blur-sm">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-amber-400">-30%</span>
+                        <i class="fa-solid fa-chart-line text-slate-600 text-xl"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-white">Penurunan Downtime</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Melalui 10 tugas PM rutin/bulan</p>
+                </div>
+
+                <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 backdrop-blur-sm">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-amber-400">+20%</span>
+                        <i class="fa-solid fa-stopwatch text-slate-600 text-xl"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-white">Kecepatan Perbaikan</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Troubleshooting mekanik & elektrik</p>
+                </div>
+
+                <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 backdrop-blur-sm">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-white">&lt;5%</span>
+                        <i class="fa-solid fa-shield-halved text-slate-600 text-xl"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-white">Tingkat Cacat Produk</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Operasional 730 jam/bln sesuai SOP</p>
+                </div>
+
+                <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 backdrop-blur-sm">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-emerald-400">AK3U</span>
+                        <i class="fa-solid fa-certificate text-slate-600 text-xl"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-white">Sertifikasi BNSP</p>
+                    <p class="text-xs text-slate-400 mt-0.5">ISO 9001, ISO 45001 & SMK3</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+        <!-- SECTION 1: PENGALAMAN KERJA -->
+        <section id="pengalaman" class="scroll-mt-24">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs font-mono font-semibold uppercase tracking-widest text-amber-600">Rekam Jejak Industri</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pengalaman Kerja & Magang</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-md">
+                    Fokus pada keandalan mesin produksi, sistem pneumatik, kelistrikan industri, serta pemeliharaan perkapalan.
+                </p>
+            </div>
+
+            <div class="relative border-l-2 border-slate-300 ml-3 sm:ml-4 space-y-10">
+                
+                <!-- Pengalaman 1 -->
+                <div class="relative pl-7 sm:pl-10">
+                    <!-- Timeline Dot -->
+                    <span class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-50 shadow"></span>
+                    
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+                            <div>
+                                <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md mb-2">
+                                    <i class="fa-solid fa-industry"></i> Manufaktur & Packaging
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900">Mekanik</h3>
+                                <p class="text-base font-semibold text-slate-700">PT Food Packaging Jaya</p>
+                            </div>
+                            <div class="md:text-right">
+                                <span class="inline-block px-3.5 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-mono font-medium">
+                                    November 2025 – Mei 2026
+                                </span>
+                                <p class="text-xs text-slate-500 mt-1">7 Bulan Pengalaman Penuh</p>
+                            </div>
+                        </div>
+
+                        <ul class="mt-5 space-y-3 text-slate-700 text-sm sm:text-base">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Melaksanakan <strong>preventive maintenance</strong> terjadwal pada mesin molding pulpa sebanyak <strong>10 tugas per bulan</strong>, sehingga downtime produksi berkurang hingga <strong>30%</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Menangani <strong>10–15 kasus gangguan (breakdown)</strong> mekanik dan kelistrikan per bulan melalui troubleshooting sistematis dan corrective maintenance, mempercepat durasi perbaikan hingga <strong>20%</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Mengoperasikan dan memantau mesin produksi sekitar <strong>730 jam per bulan</strong> sesuai SOP dan standar K3, berhasil menekan angka cacat produk di bawah <strong>5%</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Melakukan inspeksi rutin pada <strong>20 unit komponen sistem pneumatik dan panel kontrol</strong> untuk mencegah gangguan produksi mendadak.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Menyusun <strong>10 laporan teknis bulanan</strong> dari dokumentasi inspeksi dan perbaikan sebagai dasar perencanaan maintenance.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pengalaman 2 -->
+                <div class="relative pl-7 sm:pl-10">
+                    <!-- Timeline Dot -->
+                    <span class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-slate-800 border-4 border-slate-50 shadow"></span>
+                    
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+                            <div>
+                                <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md mb-2">
+                                    <i class="fa-solid fa-ship"></i> Galangan Kapal & Maritim (BUMN)
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900">Maintenance Intern</h3>
+                                <p class="text-base font-semibold text-slate-700">PT Dok & Perkapalan Kodja Bahari (Persero)</p>
+                            </div>
+                            <div class="md:text-right">
+                                <span class="inline-block px-3.5 py-1.5 rounded-lg bg-slate-100 text-slate-800 border border-slate-300 text-xs font-mono font-medium">
+                                    Juli 2024 – Desember 2024
+                                </span>
+                                <p class="text-xs text-slate-500 mt-1">Program Magang Industri</p>
+                            </div>
+                        </div>
+
+                        <ul class="mt-5 space-y-3 text-slate-700 text-sm sm:text-base">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-slate-700 mt-1 shrink-0"></i>
+                                <span>Menjalankan pemeliharaan rutin baling-baling (propeller) pada <strong>2 kapal per bulan</strong> melalui inspeksi dan <strong>alignment</strong> (preventive maintenance), mengurangi risiko kerusakan fatal hingga <strong>25%</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-slate-700 mt-1 shrink-0"></i>
+                                <span>Memelihara instalasi listrik (electrical maintenance) pada <strong>20 titik panel dan jalur distribusi</strong> untuk meningkatkan keandalan sistem kelistrikan.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-slate-700 mt-1 shrink-0"></i>
+                                <span>Mengevaluasi kondisi <strong>sistem pompa pemadam dan blower</strong> sebanyak <strong>5 unit per bulan</strong> melalui pemeliharaan preventif dan korektif.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-slate-700 mt-1 shrink-0"></i>
+                                <span>Menangani perbaikan <strong>pull pump, bosh pump, dan manhole</strong> pada <strong>5 pekerjaan bulanan</strong> untuk mencegah kebocoran dan menjaga integritas struktur lambung kapal.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-slate-700 mt-1 shrink-0"></i>
+                                <span>Menyusun <strong>4–5 laporan pekerjaan teknis</strong> setiap bulan untuk mempercepat pengambilan keputusan teknis oleh manajemen.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: KOMPETENSI & KEAHLIAN TEKNIS -->
+        <section id="keahlian" class="scroll-mt-24">
+            <div class="mb-10">
+                <span class="text-xs font-mono font-semibold uppercase tracking-widest text-amber-600">Matriks Kompetensi</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Keahlian Teknis & Operasional</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1: Maintenance -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:border-amber-400 transition-colors">
+                    <div class="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Maintenance & Troubleshooting</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Preventive Maintenance</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Corrective Maintenance</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Root Cause Troubleshooting</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Breakdown Repair Mekanik</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Breakdown Repair Kelistrikan</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Sistem Teknis -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:border-amber-400 transition-colors">
+                    <div class="w-11 h-11 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Sistem Mekanikal & Elektrikal</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Inspeksi Sistem Pneumatik</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Panel Kontrol & Instalasi Listrik</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Dasar Hidrolik</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Pemeliharaan Pompa & Blower</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Propeller Alignment</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: K3 & Standar Mutu -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:border-amber-400 transition-colors">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-helmet-safety"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Keselamatan Kerja (K3)</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">Ahli K3 Umum (AK3U)</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Manajemen Risiko (HIRARC)</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">ISO 45001 & ISO 9001</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Implementasi SMK3</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Operasional Sesuai SOP</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Software & CAD -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:border-amber-400 transition-colors">
+                    <div class="w-11 h-11 rounded-xl bg-sky-500/10 text-sky-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Engineering CAD & Software</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200 text-xs font-semibold">SolidWorks (3D CAD)</span>
+                        <span class="px-3 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200 text-xs font-semibold">AutoCAD (2D/3D)</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Ms. Excel, Word, PowerPoint</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Google Workspace</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Canva & CapCut</span>
+                    </div>
+                </div>
+
+                <!-- Card 5: Operasional & Pelaporan -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:border-amber-400 transition-colors">
+                    <div class="w-11 h-11 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Operasional & Dokumentasi</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Pengoperasian Mesin Produksi</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Technical Reporting</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Dokumentasi Maintenance</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Analisis Data Dasar (Excel & SQL)</span>
+                    </div>
+                </div>
+
+                <!-- Card 6: Soft Skills & Bahasa -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:border-amber-400 transition-colors">
+                    <div class="w-11 h-11 rounded-xl bg-rose-500/10 text-rose-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Kepemimpinan & Bahasa</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 text-amber-400 text-xs font-semibold">Bahasa Inggris (TOEFL ITP 533)</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Bahasa Indonesia (Native)</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Kepemimpinan & Koordinasi Tim</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium">Disiplin & Manajemen Waktu</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SERTIFIKASI & PELATIHAN PROFESIONAL -->
+        <section id="sertifikasi" class="scroll-mt-24 bg-slate-900 text-white rounded-3xl p-6 sm:p-10 lg:p-12 shadow-xl relative overflow-hidden">
+            <div class="absolute inset-0 blueprint-grid opacity-50 pointer-events-none"></div>
+            
+            <div class="relative z-10">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                    <div>
+                        <span class="text-xs font-mono font-semibold uppercase tracking-widest text-amber-400">Kredensial & Kepatuhan Standar</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Sertifikasi & Pelatihan</h2>
+                    </div>
+                    <span class="inline-flex items-center gap-2 text-xs font-mono bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg text-slate-300">
+                        <i class="fa-solid fa-award text-amber-400"></i> Terverifikasi Nasional & Internasional
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Sertifikasi 1 (Highlight Utama) -->
+                    <div class="md:col-span-2 bg-gradient-to-r from-slate-800 to-slate-800/80 border border-amber-500/40 rounded-2xl p-6">
+                        <div class="flex flex-wrap items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2.5 py-0.5 rounded bg-amber-500 text-slate-950 font-mono text-xs font-bold">SERTIFIKASI UTAMA &bull; 2026</span>
+                                <h3 class="text-xl font-bold text-white mt-2">Ahli K3 Umum (AK3U) — BNSP</h3>
+                            </div>
+                            <span class="text-xs font-mono text-amber-400 bg-slate-950/60 px-3 py-1 rounded-lg border border-slate-700">Badan Nasional Sertifikasi Profesi</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-3 leading-relaxed">
+                            <strong class="text-white">Cakupan Modul:</strong> Manajemen Risiko (HIRARC), K3 Listrik, K3 Mekanik, K3 Penanggulangan Kebakaran, K3 Pesawat Uap & Bejana Tekan, serta Sistem Manajemen K3 (SMK3).
+                        </p>
+                    </div>
+
+                    <!-- Sertifikasi 2 -->
+                    <div class="bg-slate-800/70 border border-slate-700 rounded-2xl p-5">
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                            <span>Mita Training</span>
+                            <span class="text-amber-400 font-semibold">2025</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">ISO 9001 & ISO 45001 (Quality & Safety Management)</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                            Prinsip Manajemen Mutu & K3, Pengendalian Operasional, Audit Internal, Tindakan Korektif, dan Continuous Improvement.
+                        </p>
+                    </div>
+
+                    <!-- Sertifikasi 3 -->
+                    <div class="bg-slate-800/70 border border-slate-700 rounded-2xl p-5">
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                            <span>Mita Training</span>
+                            <span class="text-amber-400 font-semibold">2025</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Sistem Manajemen K3 (SMK3)</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                            Siklus PDCA, Konsep & Implementasi SMK3, Penyusunan Program Manajemen K3, dan Internal Audit SMK3.
+                        </p>
+                    </div>
+
+                    <!-- Sertifikasi 4 -->
+                    <div class="bg-slate-800/70 border border-slate-700 rounded-2xl p-5">
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                            <span>Global Operation</span>
+                            <span class="text-emerald-400 font-semibold">2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">TOEFL ITP — Skor: 533 / 677</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                            Kemampuan komunikasi bahasa Inggris teknis & profesional (Listening Comprehension, Structure & Written Expression, Reading Comprehension).
+                        </p>
+                    </div>
+
+                    <!-- Sertifikasi 5 -->
+                    <div class="bg-slate-800/70 border border-slate-700 rounded-2xl p-5">
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                            <span>MySkill</span>
+                            <span class="text-slate-300 font-semibold">2024</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Intro to Data Analysis</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                            Data Cleaning & Processing, Analisis Data menggunakan Microsoft Excel & SQL, serta Penyusunan Laporan Analitis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PENDIDIKAN, PROYEK TUGAS AKHIR & ORGANISASI -->
+        <section id="pendidikan" class="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Kolom Kiri (5 Kolom): Pendidikan & Tugas Akhir -->
+            <div class="lg:col-span-5 space-y-6">
+                <div>
+                    <span class="text-xs font-mono font-semibold uppercase tracking-widest text-amber-600">Latar Belakang Akademik</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-1">Pendidikan & Proyek</h2>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-5">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-500">Agustus 2022 – Oktober 2025</span>
+                            <h3 class="text-lg font-bold text-slate-900">Politeknik Negeri Indramayu</h3>
+                            <p class="text-sm font-semibold text-slate-700">Diploma 3 (D-3) Teknik Mesin</p>
+                            <div class="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold">
+                                <i class="fa-solid fa-star text-amber-500"></i> IPK: 3.39 / 4.00
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Proyek Tugas Akhir -->
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80">
+                        <span class="text-[11px] font-mono font-bold uppercase text-amber-700 block mb-1">
+                            <i class="fa-solid fa-drafting-compass mr-1"></i> Proyek Tugas Akhir & Pameran
+                        </span>
+                        <h4 class="font-bold text-slate-900 text-sm">Perancangan dan Simulasi Mesin Pengayak Tepung Kapasitas 10 Kg</h4>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                            Merancang konstruksi mekanis dan melakukan simulasi teknis mesin pengayak tepung berkapasitas 10 kg, serta mempresentasikannya secara langsung pada <strong>Pameran Teknologi di hadapan 100 pengunjung</strong>.
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs font-semibold text-slate-700 mb-2">Mata Kuliah & Bidang Minat Utama:</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md">Pemeliharaan Mesin</span>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md">Mekanika Teknik</span>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md">Sistem Hidrolik & Pneumatik</span>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md">K3 & Lingkungan Hidup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan (7 Kolom): Kepemimpinan & Organisasi -->
+            <div class="lg:col-span-7 space-y-6">
+                <div>
+                    <span class="text-xs font-mono font-semibold uppercase tracking-widest text-amber-600">Kepemimpinan & Kolaborasi</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-1">Pengalaman Organisasi</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Organisasi 1 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900">Pendiri & Wakil Ketua</h3>
+                                <p class="text-sm font-semibold text-amber-700">Korps Sukarelawan (KSR) Politeknik Negeri Indramayu</p>
+                            </div>
+                            <span class="text-xs font-mono bg-slate-100 text-slate-700 px-3 py-1 rounded-lg self-start">
+                                Jan 2023 – Mei 2024
+                            </span>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-angle-right text-amber-500 mt-1"></i>
+                                <span>Menginisiasi seminar pelatihan pertolongan pertama bagi <strong>50 peserta</strong> untuk meningkatkan kesiapsiagaan darurat di lingkungan kampus.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-angle-right text-amber-500 mt-1"></i>
+                                <span>Mengoordinasikan aksi donor darah dan bakti sosial "Goes to School" ke <strong>3 sekolah menengah</strong>, berhasil menghimpun <strong>40 kantong darah</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-angle-right text-amber-500 mt-1"></i>
+                                <span>Memantau Pendidikan dan Latihan Dasar (Diklatsar) bagi <strong>30+ relawan baru</strong> bekerja sama dengan PMI Kabupaten Indramayu serta menjadi pemateri kedisiplinan.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-angle-right text-amber-500 mt-1"></i>
+                                <span>Mengelola administrasi internal dan logistik pada <strong>5+ agenda besar tahunan</strong>.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Organisasi 2 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900">Anggota Aktif</h3>
+                                <p class="text-sm font-semibold text-slate-700">Himpunan Mahasiswa Mesin (HMM) Polindra</p>
+                            </div>
+                            <span class="text-xs font-mono bg-slate-100 text-slate-700 px-3 py-1 rounded-lg self-start">
+                                Agu 2022 – Mei 2024
+                            </span>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-angle-right text-slate-500 mt-1"></i>
+                                <span>Berkolaborasi dalam kepanitiaan <strong>4 agenda besar himpunan</strong> hingga seluruh target program kerja terealisasi tepat waktu (<strong>tingkat keberhasilan 100%</strong>).</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-angle-right text-slate-500 mt-1"></i>
+                                <span>Mendukung penerapan prosedur keselamatan kerja dasar selama praktikum kolektif di laboratorium teknik mesin serta menjadi penghubung komunikasi kunjungan industri.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER & KONTAK SECTION -->
+    <footer id="kontak" class="bg-slate-950 text-white border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-6 space-y-4">
+                    <span class="text-xs font-mono uppercase tracking-widest text-amber-400">Terbuka Untuk Peluang Karir</span>
+                    <h2 class="text-3xl font-extrabold text-white">Siap Mendukung Keandalan Mesin & Keselamatan Kerja Perusahaan Anda</h2>
+                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                        Tersedia untuk posisi <strong class="text-slate-200">Mekanik, Maintenance Staff, atau Technician</strong> di industri manufaktur, energi, maupun perkapalan. Silakan hubungi melalui kontak di samping untuk jadwal wawancara.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Card WhatsApp / Telepon -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-3">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <p class="text-xs font-mono text-slate-400">Telepon / WhatsApp</p>
+                            <p class="text-base font-bold text-white mt-0.5">0895-3203-69328</p>
+                        </div>
+                        <div class="flex items-center gap-2 mt-4 no-print">
+                            <a href="https://wa.me/62895320369328" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors">
+                                Chat WhatsApp
+                            </a>
+                            <button onclick="copyToClipboard('0895320369328', 'Nomor telepon berhasil disalin!')" class="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700" title="Salin Nomor">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card Email -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-3">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <p class="text-xs font-mono text-slate-400">Email Profesional</p>
+                            <p class="text-sm sm:text-base font-bold text-white mt-0.5 break-all">ihsandanyoga@gmail.com</p>
+                        </div>
+                        <div class="flex items-center gap-2 mt-4 no-print">
+                            <a href="mailto:ihsandanyoga@gmail.com" class="flex-1 text-center py-2 px-3 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-semibold transition-colors">
+                                Kirim Email
+                            </a>
+                            <button onclick="copyToClipboard('ihsandanyoga@gmail.com', 'Alamat email berhasil disalin!')" class="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700" title="Salin Email">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>&copy; 2026 Ihsan Ade Yoga. Portofolio Profesional Teknik Mesin & Maintenance.</p>
+                <p class="font-mono">Singajaya, Indramayu, Jawa Barat &bull; Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification (Pengganti alert) -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white border border-amber-500/50 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-sm no-print">
+        <i class="fa-solid fa-circle-check text-amber-400"></i>
+        <span id="toast-message">Berhasil disalin!</span>
+    </div>
+
+    <script>
+        // Toggle Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tutup menu mobile saat link diklik
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Fitur Pasang & Simpan Foto Profil Secara Lokal (LocalStorage)
+        const photoInput = document.getElementById('photo-upload-input');
+        const photoPreview = document.getElementById('profile-photo-preview');
+        const uploadBtnLabel = document.getElementById('upload-btn-label');
+
+        // Muat foto jika sebelumnya sudah pernah dipasang user
+        try {
+            const savedPhoto = localStorage.getItem('ihsan_portfolio_photo');
+            if (savedPhoto) {
+                photoPreview.src = savedPhoto;
+                uploadBtnLabel.textContent = 'Ganti Foto Profil';
+            }
+        } catch (e) {
+            console.warn('LocalStorage tidak tersedia:', e);
+        }
+
+        photoInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageDataUrl = e.target.result;
+                photoPreview.src = imageDataUrl;
+                uploadBtnLabel.textContent = 'Ganti Foto Profil';
+                try {
+                    localStorage.setItem('ihsan_portfolio_photo', imageDataUrl);
+                } catch (err) {
+                    console.warn('Ukuran foto terlalu besar untuk disimpan otomatis di cache browser.');
+                }
+                showToast('Foto profil berhasil dipasang!');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Fungsi Salin Teks ke Clipboard (Kompatibel Iframe)
+        function copyToClipboard(text, message) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast(message);
+            } catch (err) {
+                showToast('Gagal menyalin teks.');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Fungsi Menampilkan Notifikasi Toast
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
